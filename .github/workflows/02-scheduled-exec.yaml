@@ -1,7 +1,7 @@
-# CI de Nível 01 - Disparo agendado a cada 1 hora
+# CI de Nível 0102 - Disparo agendado diariamente às 20:40 UTC
 
 # Nome do nosso 'Pipeline'
-name: 'Execução Agendada'
+name: 'Execução Agendada diariamente às 20:40 UTC'
 
 # Regras de disparo (gatilhos/triggers)
 # Gatilhod e execução manual = workflow_dispatch
@@ -9,7 +9,7 @@ name: 'Execução Agendada'
 on:
     schedule:
         # Executa a cada 10 minutos
-        - cron: '*/10 * * * *'
+        - cron: '40 20 * * *' # Executa diariamente às 20:40 UTC
 
 # Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
