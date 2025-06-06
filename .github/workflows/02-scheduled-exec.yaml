@@ -1,16 +1,16 @@
-# CI de Nível 0102 - Disparo agendado diariamente às 20:40 UTC
+# CI de Nível 0102 - Disparo agendado para todo primeiro sábado do mês às 17:40 BRT
 
 # Nome do nosso 'Pipeline'
-name: 'Execução Agendada para primeira sexta-feira do mês às 17:40 BRT'
+name: 'Execução Agendada para primeiro sábado do mês às 17:40 BRT'
 
 # Regras de disparo (gatilhos/triggers)
 # Gatilhod e execução manual = workflow_dispatch
 
 on:
     schedule:
-        # Executa diariamente às 17:40 BRT
+        # Executa mensalmente no primeiro sábado do mês às 17:40 BRT
         # https://crontab.guru/
-        - cron: '40 17 1-7 * 5' # Execura toda primeira sexta-feira do mês às 17:40 BRT
+        - cron: '40 17 1-7 * 6' # Execura toda primeiro sábado do mês às 17:40 BRT
 
 # Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
