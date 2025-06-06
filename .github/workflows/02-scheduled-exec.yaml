@@ -10,7 +10,7 @@ on:
     schedule:
         # Executa diariamente às 17:40 BRT
         # https://crontab.guru/
-        - cron: '40 20 * * *' # Executa diariamente às 17:40 BRT
+        - cron: '40 17 1-7 * 5' # Execura toda primeira sexta-feira do mês às 17:40 BRT
 
 # Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
