@@ -1,7 +1,7 @@
 # CI de Nível 0102 - Disparo agendado diariamente às 20:40 UTC
 
 # Nome do nosso 'Pipeline'
-name: 'Execução Agendada diariamente às 17:40 BRT'
+name: 'Execução Agendada para primeira sexta-feira do mês às 17:40 BRT'
 
 # Regras de disparo (gatilhos/triggers)
 # Gatilhod e execução manual = workflow_dispatch
