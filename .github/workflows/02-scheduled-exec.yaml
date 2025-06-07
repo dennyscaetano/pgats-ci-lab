@@ -7,51 +7,44 @@ name: 'Execução Agendada para primeiro sábado do mês às 17:40 BRT'
 # Gatilhod e execução manual = workflow_dispatch
 
 on:
-    schedule:
-        # Executa mensalmente no primeiro sábado do mês às 17:40 BRT
-        # https://crontab.guru/
-        - cron: '40 17 1-7 * 6' # Execura toda primeiro sábado do mês às 17:40 BRT
+  schedule:
+    # Executa mensalmente no primeiro sábado do mês às 17:40 BRT
+    # https://crontab.guru/
+    - cron: '40 17 1-7 * 6' # Execura toda primeiro sábado do mês às 17:40 BRT
 
 # Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
-    e2e-tests:
-        # Nome do trabalho
-        name: 'Execução de Testes E2E'
+  e2e-tests:
+    # Nome do trabalho
+    name: 'Execução de Testes E2E'
 
-        # Execução em um container Docker (https://github.com/actions/runner-images)
-        runs-on: ubuntu-latest
+    # Execução em um container Docker (https://github.com/actions/runner-images)
+    runs-on: ubuntu-latest
 
+    # Passos do script de build
+    steps:
+      # Clone do projeto (https://github.com/marketplace/actions/checkout)
+      - name: 'Clone do repositório'
+        uses: actions/checkout@v4
 
+      # Instalação do Node.js
+      - name: 'Instalação do Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
 
+      # Instalação do Yarn
+      - name: 'Instalação do Yarn'
+        run: npm install --global yarn
 
+      # Instalação das dependências do projeto
+      - name: 'Instalação das dependências do projeto'
+        run: yarn install
 
-        # Passos do script de build
-        steps:
-            # Clone do projeto (https://github.com/marketplace/actions/checkout)
-            - name: 'Clone do repositório'
-              uses: actions/checkout@v4
+      # Instalação do Playwright
+      - name: 'Instalação do Playwright'
+        run: yarn playwright install
 
-            # Instalação do Node.js
-            - name: 'Instalação do Node.js'
-              uses: actions/setup-node@v4
-              with:
-                  node-version: '22.x'
-
-            # Instalação do Yarn
-            - name: 'Instalação do Yarn'
-              run: npm install --global yarn
-            
-            # Instalação das dependências do projeto
-            - name: 'Instalação das dependências do projeto'
-              run: yarn install
-
-            # Instalação do Playwright
-            - name: 'Instalação do Playwright'
-              run: yarn playwright install
-              
-            # Execução dos testes E2E
-            - name: 'Execução dos testes E2E'
-              run: yarn run e2e
-
-            
-            
+      # Execução dos testes E2E
+      - name: 'Execução dos testes E2E'
+        run: yarn run e2e
